@@ -171,7 +171,7 @@ function App() {
     <div className="App">
       <Header />
         <Layout>
-          <ProfileCard onLogout={onLogout}/>
+          <ProfileCard user={user} onLogout={onLogout}/>
           <Frame>
             <DataCard title="Books" count={books.length} />
             <DataCard title="Stories" count={stories.length} />

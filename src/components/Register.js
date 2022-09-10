@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Button from '../components/Button';
-import FieldLabel from '../components/FieldLabel';
-import InputField from '../components/InputField';
+import Button from './Button';
+import FieldLabel from './FieldLabel';
+import InputField from './InputField';
 import H2Text from './H2Text';
 import PText from './PText';
 

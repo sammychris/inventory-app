@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import DataCard from '../components/DataCard';
 import Layout from '../components/Layout';
@@ -12,132 +12,144 @@ import BookList from '../components/BookList';
 import StoryList from '../components/StoryList';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import { saveItem, getItem } from '../utils/storage';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setUser,
+  setBooks,
+  setStories,
+  setGuest,
+  setView,
+  setPage, 
+  setBookField,
+  setBookId,
+  setStoryField,
+  setStoryId 
+} from '../reducers';
 
 
 
 function App() {
-  const [user, setUser] = useState(getItem('user'));
-  const [books, setBooks] = useState(getItem('books'));
-  const [stories, setStories] = useState(getItem('stories'));
-  const [guest, setGuest] = useState({});
-  const [view, setView] = useState('story');
-  const [page, setPage] = useState('register');
-  const [bookField, setBookField] = useState('');
-  const [bookId, setBookId] = useState('');
-  const [storyField, setStoryField] = useState('');
-  const [storyId, setStoryId] = useState('');
+  const dispatch = useDispatch();
+  const {
+    user,
+    books,
+    stories,
+    guest,
+    view,
+    page,
+    bookField,
+    bookId,
+    storyField,
+    storyId
+  } = useSelector(state => state.inventory);
 
-  const onBookChange = (e) => setBookField(e.target.value);
-  const onBookIdChange = (e) => setBookId(e.target.value);
-  const onStoryChange = (e) => setStoryField(e.target.value);
+  const onBookChange = (e) =>  dispatch(setBookField(e.target.value));
+  const onBookIdChange = (e) =>  dispatch(setBookId(e.target.value));
+  const onStoryChange = (e) =>  dispatch(setStoryField(e.target.value));
    
   const onSubmitBook = () => {
+    if (!bookField) return alert('Enter a book name');
     const catIndex = books.findIndex(item => item.id === bookId);
     if (catIndex === -1) {
       const id = books.length;
       const newBooks = [...books, { id, book: bookField }];
-      setBooks(newBooks);
-      saveItem('books', newBooks);
+      dispatch(setBooks(newBooks));
     } else {
       const newBooks = JSON.parse(JSON.stringify(books));
       newBooks[catIndex].book = bookField;
-      setBooks(newBooks);
-      saveItem('books', newBooks);
+      dispatch(setBooks(newBooks));
     }
-    setBookField('');
-    setBookId('');
-    setStoryField('');
+    dispatch(setBookField(''));
+    dispatch(setBookId(''));
+    dispatch(setStoryField(''));
+    dispatch(setView('book'));
   };
 
   const onSubmitStory = () => {
+    if (!bookId) return alert('Select a book');
+    if (!storyField) return alert('Enter a story');
     const itemIndex = stories.findIndex(item => item.id === storyId);
     if(itemIndex === -1) {
       const id = stories.length;
       const newStories = [ ...stories, { id, bookId, story: storyField } ];
-      setStories(newStories);
-      saveItem('stories', newStories);
+      dispatch(setStories(newStories));
     } else {
       const newStories = JSON.parse(JSON.stringify(stories));
       newStories[itemIndex].bookId = bookId;
       newStories[itemIndex].story = storyField;
-      setStories(newStories);
-      saveItem('stories', newStories);
+      dispatch(setStories(newStories));
     }
-    setBookField('');
-    setBookId('');
-    setStoryField('');
+    dispatch(setBookField(''));
+    dispatch(setBookId(''));
+    dispatch(setStoryField(''));
+    dispatch(setView('story'));
   };
 
   const onBookForm = () => {
-    setView('bForm');
+    dispatch(setView('bForm'));
   }
 
   const onStoryForm = () => {
-    setView('sForm');
+    dispatch(setView('sForm'));
   }
 
   const onClose = () => {
-    setView('story');
-    setBookField('');
-    setBookId('');
-    setStoryField('');
+    dispatch(setView('story'));
+    dispatch(setBookField(''));
+    dispatch(setBookId(''));
+    dispatch(setStoryField(''));
   }
 
   const onViewBooks = () => {
-    setView('book');
-    setBookField('');
-    setBookId('');
-    setStoryField('');
+    dispatch(setView('book'));
+    dispatch(setBookField(''));
+    dispatch(setBookId(''));
+    dispatch(setStoryField(''));
   }
 
   const onViewStories = () => {
-    setView('story');
-    setBookField('');
-    setBookId('');
-    setStoryField('');
+    dispatch(setView('story'));
+    dispatch(setBookField(''));
+    dispatch(setBookId(''));
+    dispatch(setStoryField(''));
   }
 
   const onUpdateStory = (item) => {
-    setStoryId(item.id);
-    setBookId(item.bookId);
-    setStoryField(item.story);
-    setView('sForm');
+    dispatch(setStoryId(item.id));
+    dispatch(setBookId(item.bookId));
+    dispatch(setStoryField(item.story));
+    dispatch(setView('sForm'));
   }
 
   const onUpdateBook = (item) => {
-    setBookId(item.id);
-    setBookField(item.book);
-    setView('bForm');
+    dispatch(setBookId(item.id));
+    dispatch(setBookField(item.book));
+    dispatch(setView('bForm'));
   }
 
   const onDeleteBook = (item) => {
     const filterData = books.filter(book => book.id !== item.id);
-    setBooks(filterData);
-    saveItem('books', filterData);
+    dispatch(setBooks(filterData));
   }
 
   const onDeleteStory = (item) => {
     const filterData = stories.filter(story => story.id !== item.id);
-    setStories(filterData);
-    saveItem('stories', filterData);
+    dispatch(setStories(filterData));
   }
 
   const onLogout = (e) => {
     e.preventDefault();
-    user.isLogin = false;
-    setUser({...user});
-    saveItem('user', {...user});
-    setPage('login');
+    dispatch(setUser({...user, isLogin: false}));
+    dispatch(setPage('login'));
   }
 
   const onChangePage = (page) => {
-    setPage(page);
+    dispatch(setPage(page));
   }
 
   const onHandleGuest = (e) => {
     const {name, value} = e.target;
-    setGuest({...guest, [name]: value});
+    dispatch(setGuest({...guest, [name]: value}));
   }
 
   const onSaveUser = (e) => {
@@ -146,26 +158,22 @@ function App() {
     if (!validStr(guest.email)) return alert('Email cannot be empty');
     if (validStr(guest.password).length < 8) return alert('Password must not be less than 8 characters');
     if (validStr(guest.password) !== validStr(guest.confirmPassword)) return alert('Password and confirm password must be the same!');
-    setUser({...guest});
-    saveItem(`user`, {...guest});
+    dispatch(setUser({...guest}));
     alert('Register Successfully!');
-    onChangePage('login')
+    dispatch(onChangePage('login'))
   }
 
   const onLogin = (e) => {
     e.preventDefault();
     if (validStr(guest.email) !== validStr(user.email)) return alert('User not recognize!');
     if (validStr(guest.password) !== validStr(user.password)) return alert('Password does not match!');
-    user.isLogin = true;
-    setUser({...user});
-    saveItem('user', {...user});
+    dispatch(setUser({...user, isLogin: true}));
     alert('LoggedIn Successfully!');
   }
 
   const validStr = (str) => {
     return str?.toLowerCase()?.trim();
   }
-
 
   if (!user.isLogin && page === 'login') return <Login guest={guest} onHandleGuest={onHandleGuest} onLogin={onLogin} onChangePage={onChangePage} />;
   if (!user.isLogin && page === 'register') return <Register guest={guest} onHandleGuest={onHandleGuest} onSaveUser={onSaveUser} onChangePage={onChangePage} />;
@@ -221,9 +229,7 @@ function App() {
               )}
             </ContentCard>
           </Frame>
-        </Layout>
-        
-       
+        </Layout> 
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import H2Text from './H2Text';
-import PText from './PText';
+import H2Text from '../H2Text';
+import PText from '../PText';
 
 
 const ProfileCard = ({user, onLogout}) => {

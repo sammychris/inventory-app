@@ -1,3 +1,3 @@
-import Button from "./Button";
+import Register from "./Register";
 
-export default Button;
+export default Register;

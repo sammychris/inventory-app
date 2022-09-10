@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Button from './Button';
-import FieldLabel from './FieldLabel';
-import InputField from './InputField';
-import H2Text from './H2Text';
-import PText from './PText';
+import Button from '../Button';
+import FieldLabel from '../FieldLabel';
+import InputField from '../InputField';
+import H2Text from '../H2Text';
+import PText from '../PText';
 
 const Register = ({guest, onHandleGuest, onSaveUser, onChangePage}) => {
     const { name, email, password, confirmPassword } = guest;

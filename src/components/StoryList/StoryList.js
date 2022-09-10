@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../Button';
 
 
-const BookList = ({books, onUpdateBook, onDeleteBook}) => {
+const StoryList = ({stories, onUpdateStory, onDeleteStory}) => {
     return (
-        books.map((item, i) => {
-            const {id, book} = item; 
+        stories.map((item, i) => {
+            const {id, story} = item; 
             return (
                 <ItemContainer key={i}>
-                    <Span>id-{id}</Span><Span>{book}</Span>
+                    <Span>id-{id}</Span><Span>{story}</Span>
                     <div>
-                      <Button cls="primary" event={() => onUpdateBook(item)}>Edit</Button>
-                      <Button cls="danger" event={() => onDeleteBook(item)}>Delete</Button>
+                      <Button cls="primary" event={() => onUpdateStory(item)}>Edit</Button>
+                      <Button cls="danger" event={() => onDeleteStory(item)}>Delete</Button>
                     </div>
                 </ItemContainer>
             )
@@ -21,7 +21,7 @@ const BookList = ({books, onUpdateBook, onDeleteBook}) => {
   }
 
 
-export default BookList;
+export default StoryList;
 
 const ItemContainer = styled.div`
   display: flex;

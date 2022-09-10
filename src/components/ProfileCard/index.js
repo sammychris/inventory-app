@@ -1,3 +1,3 @@
-import Button from "./Button";
+import ProfileCard from "./ProfileCard";
 
-export default Button;
+export default ProfileCard;

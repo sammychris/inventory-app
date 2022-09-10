@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import FieldLabel from './FieldLabel';
-import SelectInputField from './SelectInputField';
-import TextAreaField from './TextAreaField';
-import Button from './Button';
+import FieldLabel from '../FieldLabel';
+import SelectInputField from '../SelectInputField';
+import TextAreaField from '../TextAreaField';
+import Button from '../Button';
 
 const StoryForm = ({ bookId, storyField, onClose, onBookIdChange, onStoryChange, onSubmit, books}) => {
     return (

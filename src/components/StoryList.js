@@ -9,9 +9,11 @@ const StoryList = ({stories, onUpdateStory, onDeleteStory}) => {
             const {id, story} = item; 
             return (
                 <ItemContainer key={i}>
-                    <span>Id: {id} </span><span>Story: {story}</span>
-                    <Button event={() => onUpdateStory(item)}>Edit</Button>
-                    <Button event={() => onDeleteStory(item)}>Delete</Button>
+                    <Span>id-{id}</Span><Span>{story}</Span>
+                    <div>
+                      <Button cls="primary" event={() => onUpdateStory(item)}>Edit</Button>
+                      <Button cls="danger" event={() => onDeleteStory(item)}>Delete</Button>
+                    </div>
                 </ItemContainer>
             )
         })
@@ -22,9 +24,10 @@ const StoryList = ({stories, onUpdateStory, onDeleteStory}) => {
 export default StoryList;
 
 const ItemContainer = styled.div`
-  color: grey;
-  font-weight: bolder;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 0 10px;
   border-color: #cfcfcf;
   border-width: 0.1em 0;
   border-style: solid;
@@ -33,5 +36,10 @@ const ItemContainer = styled.div`
     z-index: 1;
     border-width: 1px;
   }
+`;
 
+const Span = styled.span`
+  color: cadetblue;
+  font-size: 16px;
+  font-weight: 600;
 `;

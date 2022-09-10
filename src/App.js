@@ -20,7 +20,7 @@ function App() {
   const [stories, setStories] = useState(getItem('stories'));
   const [guest, setGuest] = useState({});
   const [view, setView] = useState('story');
-  const [page, setPage] = useState('login');
+  const [page, setPage] = useState('register');
   const [bookField, setBookField] = useState('');
   const [bookId, setBookId] = useState('');
   const [storyField, setStoryField] = useState('');
@@ -178,8 +178,8 @@ function App() {
               <Button event={onBookForm}>Create Book</Button>
               <Button event={onStoryForm}>Create Story</Button>
               <div>
-                <Button event={onViewBooks} view={view} size="small">Books</Button>
-                <Button event={onViewStories} view={view} size="small" cls="active">Stories</Button>
+                <Button event={onViewBooks} size="small" cls={view === 'book' | view === 'bForm' && "active"}>Books</Button>
+                <Button event={onViewStories} size="small" cls={view === 'story' | view === 'sForm' && "active"}>Stories</Button>
               </div>
               {view === 'book' && <BookList books={books} onUpdateBook={onUpdateBook} onDeleteBook={onDeleteBook}/>}
               {view === 'story' && <StoryList stories={stories} onUpdateStory={onUpdateStory} onDeleteStory={onDeleteStory}/>}

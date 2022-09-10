@@ -9,22 +9,25 @@ const BookList = ({books, onUpdateBook, onDeleteBook}) => {
             const {id, book} = item; 
             return (
                 <ItemContainer key={i}>
-                    <span>Id: {id} </span><span>book: {book}</span>
-                    <Button event={() => onUpdateBook(item)}>Edit</Button>
-                    <Button event={() => onDeleteBook(item)}>Delete</Button>
+                    <Span>id-{id}</Span><Span>{book}</Span>
+                    <div>
+                      <Button cls="primary" event={() => onUpdateBook(item)}>Edit</Button>
+                      <Button cls="danger" event={() => onDeleteBook(item)}>Delete</Button>
+                    </div>
                 </ItemContainer>
             )
         })
     );
-}
+  }
 
 
 export default BookList;
 
 const ItemContainer = styled.div`
-  color: grey;
-  font-weight: bolder;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 0 10px;
   border-color: #cfcfcf;
   border-width: 0.1em 0;
   border-style: solid;
@@ -33,5 +36,10 @@ const ItemContainer = styled.div`
     z-index: 1;
     border-width: 1px;
   }
+`;
 
+const Span = styled.span`
+  color: cadetblue;
+  font-size: 16px;
+  font-weight: 600;
 `;

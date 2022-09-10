@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Button = ({children, event, cls, size, position, type=""}) => {
+const Button = ({children, event, cls, size, position, type="", style}) => {
     return (
-        <ButtonContainer onClick={event} size={size} position={position} type={type} cls={cls}>
+        <ButtonContainer onClick={event} size={size} position={position} type={type} cls={cls} style={style}>
             {children}
         </ButtonContainer>
     );
@@ -16,10 +16,10 @@ export default Button;
 const ButtonContainer = styled.button`
     font-size: 16px;
     padding: 5px 10px;
-    margin: 20px 10px 0 0;
+    margin: 5px 5px 10px 0;
     cursor: pointer;
     &:hover {
-        background: #c14f4f;
+        background: #fff;
     }
     ${props => props.size === "small" &&`
         font-size: 12px;
@@ -39,16 +39,22 @@ const ButtonContainer = styled.button`
         &:hover {
             background: #c14f4f;
         }
+    `}
+    ${props => props.cls === 'primary' &&`
+        background: #007bff;
+        color: #fff;
+        border: 0;
         &:hover {
-            background: #c14f4f;
+            background: #007bbb;
         }
     `}
     ${props => props.cls === 'active' &&`
         background: #fff;
         color: #000;
-        border: 0;
+        border: 2px solid black;
         &:hover {
-            background: #c14f4f;
+            background: #fff;
+            border: 2px solid black;
         }
     `}
     

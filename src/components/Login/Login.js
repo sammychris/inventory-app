@@ -12,7 +12,7 @@ const Login = ({guest, onHandleGuest, onLogin, onChangePage}) => {
         <Container>
             <Form>
                 <H2Text align={'center'}>Inventory App</H2Text>
-                <PText align={'center'}>Welcome Back. New user? <a href="#" onClick={() => onChangePage('register')}>Register</a></PText>
+                <PText align={'center'}>Welcome Back. New user? <SpanLink onClick={() => onChangePage('register')}>Register</SpanLink></PText>
                 <FieldLabel title="Email" />
                 <InputField event={onHandleGuest} name="email" value={email} placeholder="email" type="email" required={true}/>
                 <FieldLabel title="Password" />
@@ -41,4 +41,13 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SpanLink = styled.span`
+    text-decoration: underline;
+    color: steelblue;
+    cursor: pointer;
+    &:hover {
+        color: blue;
+    }
 `;

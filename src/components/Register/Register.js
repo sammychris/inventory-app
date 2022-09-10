@@ -11,7 +11,7 @@ const Register = ({guest, onHandleGuest, onSaveUser, onChangePage}) => {
         <Container>
             <Form>
                 <H2Text align={'center'}>Inventory App</H2Text>
-                <PText align={'center'}>You are welcome. Already a user? <a href="#" onClick={() => onChangePage('login')}>Login</a></PText>
+                <PText align={'center'}>You are welcome. Already a user? <SpanLink onClick={() => onChangePage('login')}>Login</SpanLink></PText>
                 <FieldLabel title="Name" />
                 <InputField event={onHandleGuest} name="name" value={name} placeholder="name" type="text" required={true}/>
                 <FieldLabel title="Email" />
@@ -44,4 +44,13 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SpanLink = styled.span`
+    text-decoration: underline;
+    color: steelblue;
+    cursor: pointer;
+    &:hover {
+        color: blue;
+    }
 `;

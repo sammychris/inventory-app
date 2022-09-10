@@ -38,16 +38,6 @@ const HeaderSection = styled.header`
   position: relative;
 `;
 
-const Overlay = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgb(0 0 0 / 42%); 
-  z-index: 1;
-`;
-
 const Navigation = styled.div`
   display: flex;
   text-align: center;

@@ -11,7 +11,7 @@ const ProfileCard = ({user, onLogout}) => {
             </PictureContainer>
             <H2Text align={'center'}>{user.name}</H2Text>
             <PText align={'center'}>My name is {user.name}. I'm a software engineer.</PText>
-            <a href="#" onClick={onLogout}>Logout</a>
+            <SpanLink onClick={onLogout}>Logout</SpanLink>
         </Container>
     );
   }
@@ -35,3 +35,12 @@ const Container = styled.div`
     padding: 20px;
     text-align: center;
 `
+
+const SpanLink = styled.span`
+    text-decoration: underline;
+    color: steelblue;
+    cursor: pointer;
+    &:hover {
+        color: blue;
+    }
+`;

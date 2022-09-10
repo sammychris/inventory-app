@@ -16,12 +16,11 @@ import { saveItem, getItem } from './utils/storage';
 
 function App() {
   const [user, setUser] = useState(getItem('user'));
+  const [books, setBooks] = useState(getItem('books'));
+  const [stories, setStories] = useState(getItem('stories'));
   const [guest, setGuest] = useState({});
   const [view, setView] = useState('story');
   const [page, setPage] = useState('login');
-  const [books, setBooks] = useState(getItem('books'));
-  const [stories, setStories] = useState(getItem('stories'));
-
   const [bookField, setBookField] = useState('');
   const [bookId, setBookId] = useState('');
   const [storyField, setStoryField] = useState('');
@@ -179,13 +178,13 @@ function App() {
               <Button event={onBookForm}>Create Book</Button>
               <Button event={onStoryForm}>Create Story</Button>
               <div>
-                <button onClick={onViewBooks} style={{background: '#f5f5f5', border: 0, color: '#000', padding: '5px 10px', cursor: 'pointer'}}>Books</button>
-                <button onClick={onViewStories} style={{background: '#fff', border: 0, color: '#000', padding: '5px 10px', margin: 20, cursor: 'pointer'}}>Story</button>
+                <Button event={onViewBooks} view={view} size="small">Books</Button>
+                <Button event={onViewStories} view={view} size="small" cls="active">Stories</Button>
               </div>
               {view === 'book' && <BookList books={books} onUpdateBook={onUpdateBook} onDeleteBook={onDeleteBook}/>}
               {view === 'story' && <StoryList stories={stories} onUpdateStory={onUpdateStory} onDeleteStory={onDeleteStory}/>}
               {view === 'bForm' && (
-                <>
+                <> 
                   <BookForm
                     onClose={onClose}
                     onBookChange={onBookChange}

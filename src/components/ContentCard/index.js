@@ -1,3 +1,3 @@
-import Button from "./Button";
+import ContentCard from "./ContentCard";
 
-export default Button;
+export default ContentCard;

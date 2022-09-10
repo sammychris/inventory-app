@@ -1,3 +1,3 @@
-import Button from "./Button";
+import H2Text from "./H2Text";
 
-export default Button;
+export default H2Text;

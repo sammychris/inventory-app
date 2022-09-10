@@ -1,3 +1,3 @@
-import Button from "./Button";
+import Frame from "./Frame";
 
-export default Button;
+export default Frame;

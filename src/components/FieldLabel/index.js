@@ -1,3 +1,3 @@
-import Button from "./Button";
+import FieldLabel from "./FieldLabel";
 
-export default Button;
+export default FieldLabel;

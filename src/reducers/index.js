@@ -18,11 +18,11 @@ const reducerSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
         state.user = action.payload;
-        saveItem('user', {...action.payload});
+        saveItem('user', action.payload);
     },
     setBooks: (state, action) => {
         state.books = action.payload;
-        saveItem('books', {...action.payload});
+        saveItem('books', action.payload);
     },
     setStories: (state, action) => {
         state.stories = action.payload;

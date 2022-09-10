@@ -126,6 +126,7 @@ function App() {
     user.isLogin = false;
     setUser({...user});
     saveItem('user', {...user});
+    setPage('login');
   }
 
   const onChangePage = (page) => {

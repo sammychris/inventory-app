@@ -7,7 +7,7 @@ import InputField from '../InputField';
 const BookForm = ({bookField, onClose, onBookChange, onSubmit}) => {
     return (
         <BookFormContainer>
-            <Button cls="danger" position="right" size="small" event={onClose}>close</Button>
+            <Button cls="danger" position="right" size="small" event={() => onClose('book')}>close</Button>
             <FieldLabel title="Enter book category" />
             <InputField event={onBookChange} value={bookField}/>
             <div>

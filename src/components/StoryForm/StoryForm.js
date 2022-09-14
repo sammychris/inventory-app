@@ -7,7 +7,7 @@ import Button from '../Button';
 const StoryForm = ({ bookId, storyField, onClose, onBookIdChange, onStoryChange, onSubmit, books}) => {
     return (
         <StoryFormContainer>
-            <Button cls="danger" position="right" size="small" event={onClose}>close</Button>
+            <Button cls="danger" position="right" size="small" event={() => onClose('story')}>close</Button>
             <FieldLabel title="Select a book category" />
             <SelectInputField event={onBookIdChange} bookId={bookId} books={books}/>
             <TextAreaField value={storyField} event={onStoryChange} />

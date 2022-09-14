@@ -93,8 +93,8 @@ function App() {
     dispatch(setView('sForm'));
   }
 
-  const onClose = () => {
-    dispatch(setView('story'));
+  const onClose = (v) => {
+    dispatch(setView(v));
     dispatch(setBookField(''));
     dispatch(setBookId(''));
     dispatch(setStoryField(''));

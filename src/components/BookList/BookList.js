@@ -4,6 +4,7 @@ import Button from '../Button';
 
 
 const BookList = ({books, onUpdateBook, onDeleteBook}) => {
+    if(!books.length) return <Message>No book yet!</Message>;
     return (
         books.map((item, i) => {
             const {id, book} = item; 
@@ -42,4 +43,9 @@ const Span = styled.span`
   color: cadetblue;
   font-size: 16px;
   font-weight: 600;
+`;
+
+const Message = styled.div`
+  margin-top: 20px;
+  text-align: center;
 `;

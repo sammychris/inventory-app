@@ -4,6 +4,7 @@ import Button from '../Button';
 
 
 const StoryList = ({stories, onUpdateStory, onDeleteStory}) => {
+    if(!stories.length) return <Message>No story yet!</Message>;
     return (
         stories.map((item, i) => {
             const {id, story} = item; 
@@ -42,4 +43,9 @@ const Span = styled.span`
   color: cadetblue;
   font-size: 16px;
   font-weight: 600;
+`;
+
+const Message = styled.div`
+  margin-top: 20px;
+  text-align: center;
 `;
